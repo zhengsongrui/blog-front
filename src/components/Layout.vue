@@ -10,7 +10,7 @@ import Breadcrumb from './Breadcrumb.vue';
 
 <template>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <el-container>
+  <el-container class="topContainer">
     <el-header class="myHeader">
       <MyHeader></MyHeader>
     </el-header>
@@ -19,8 +19,10 @@ import Breadcrumb from './Breadcrumb.vue';
         <LeftMenu/>
       </el-aside>
       <el-main>
-        <Breadcrumb></Breadcrumb>
-        <RouterView></RouterView>
+        <div class="marginView">
+          <Breadcrumb></Breadcrumb>
+          <RouterView></RouterView>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -28,28 +30,46 @@ import Breadcrumb from './Breadcrumb.vue';
 
 <style lang="less" scoped>
 
-.el-container {
+
+.topContainer {
+  background-color: rgba(255, 255, 255, .9);
   height: 100%;
-}
-
-
-.el-container {
+  
   .myHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: red;
+    border-bottom: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    
   }
 
   .el-aside {
-    background-color: blue;
     overflow: visible;
-   
+    border-right: 1px solid #eee;
+    background-color: rgba(255, 255, 255, 1);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
   }
 
+ 
   .el-main {
     padding: 10px;
+    height: calc( 100vh - 60px );
+    margin-top: 60px;
+    overflow-y: auto;
     // background-color: #333;
+     .marginView{
+      margin: 0 auto;
+      width: 700px;
+    }
   }
 }
 </style>

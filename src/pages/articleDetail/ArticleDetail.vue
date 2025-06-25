@@ -80,8 +80,5 @@
 </template>
 
 <style lang="less" scoped>
-    .myArticle{
-        width: 700px;
-        margin: 0 auto;
-    }
+   
 </style>

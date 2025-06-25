@@ -1,38 +1,47 @@
 <script setup lang="ts">
 import router from "@/router";
 import { View } from "@element-plus/icons-vue"
+import {
+    type SingleArticleInter
+} from "@/types/articleApi.types"
 
-function gotoDetail(){
+function gotoDetail() {
     router.push({
-        path:'/articleDetail'
+        path: '/articleDetail'
     })
 }
+
+defineProps<{
+    itemData: SingleArticleInter
+}>()
 
 </script>
 
 <template>
     <div class="listItem">
         <div class="topView">
-            <div class="title" @click="gotoDetail">测试标题</div>
-            <el-tag size="small" effect="plain" type="success">测试类别</el-tag>
+            <div class="title" @click="gotoDetail">{{ itemData.title }}</div>
+            <el-tag size="small" effect="plain" type="success">{{ itemData.category }}</el-tag>
         </div>
-        <div class="centerView" @click="gotoDetail">描述</div>
+        <div class="centerView" @click="gotoDetail">{{ itemData.description }}</div>
         <div class="bottomView">
             <div class="read">
                 <el-icon :size="16" color="#666">
                     <View></View>
                 </el-icon>
-                <span>35</span>
+                <span>{{ itemData.readCount }}</span>
             </div>
-            <div class="time">2020/09/08</div>
+            <div class="date">{{ itemData.date }}</div>
         </div>
     </div>
 </template>
 
 <style lang="less" scoped>
 .listItem {
-    border: 1px solid red;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     margin-bottom: 20px;
+    padding: 10px;
 
     .topView,
     .bottomView {
@@ -57,7 +66,11 @@ function gotoDetail(){
     .title {
         font-size: 24px;
         margin-right: 10px;
+        cursor: pointer;
     }
+    .centerView{
+        cursor: pointer;
 
+    }
 }
 </style>

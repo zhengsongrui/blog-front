@@ -16,6 +16,9 @@
 
 <style lang="less" scoped>
 .breadcrumbView {
+    padding-top: 20px;
     padding-bottom: 10px;
+    margin-bottom: 10px;
+    // border-bottom: 1px solid #bbb;
 }
 </style>
