@@ -4,7 +4,7 @@ import { computed, ref } from "vue"
 export default function () {
     const initAsideWidth:number = 300
     // 侧边栏宽度控制
-    let asideWidth = ref(initAsideWidth)
+    let asideWidth = ref(0)
     function changeAsideWidth() {
         if (asideWidth.value > 0) {
             asideWidth.value = 0

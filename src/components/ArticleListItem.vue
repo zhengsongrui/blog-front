@@ -5,9 +5,9 @@ import {
     type SingleArticleInter
 } from "@/types/articleApi.types"
 
-function gotoDetail() {
+function gotoDetail(id:number) {
     router.push({
-        path: '/articleDetail'
+        path:`/articleDetail/${id}`
     })
 }
 
@@ -20,10 +20,10 @@ defineProps<{
 <template>
     <div class="listItem">
         <div class="topView">
-            <div class="title" @click="gotoDetail">{{ itemData.title }}</div>
-            <el-tag size="small" effect="plain" type="success">{{ itemData.category }}</el-tag>
+            <div class="title" @click="gotoDetail(itemData.id)">{{ itemData.title }}</div>
+            <el-tag size="small" effect="plain" type="success">{{ itemData.categoryName }}</el-tag>
         </div>
-        <div class="centerView" @click="gotoDetail">{{ itemData.description }}</div>
+        <div class="centerView" @click="gotoDetail(itemData.id)">{{ itemData.description }}</div>
         <div class="bottomView">
             <div class="read">
                 <el-icon :size="16" color="#666">
@@ -31,7 +31,7 @@ defineProps<{
                 </el-icon>
                 <span>{{ itemData.readCount }}</span>
             </div>
-            <div class="date">{{ itemData.date }}</div>
+            <div class="date">{{ itemData.createtime }}</div>
         </div>
     </div>
 </template>

@@ -4,6 +4,9 @@ import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig
 } from 'axios'
+import { ElMessage } from "element-plus"
+import { useUserStore } from "@/stores/userStore"
+
 
 // 定义接口返回数据的通用结构（根据实际 API 结构调整）
 interface ApiResponse<T = any> {
@@ -21,10 +24,9 @@ class Request {
       'Content-Type': 'application/json;charset=UTF-8'
     }
   }
-
+  
   constructor() {
     this.instance = axios.create(this.baseConfig)
-
     // 请求拦截器
     this.instance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
@@ -44,16 +46,21 @@ class Request {
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         // 处理通用响应逻辑
-        console.log(response)
         const res = response.data
-        
+
         // 根据业务状态码处理（示例）
         if (res.code !== 200) {
           // 处理错误（如 token 过期）
           if (res.code === 401) {
             console.error('登录过期，请重新登录')
             // 跳转到登录页
+            useUserStore().setUserInfo({})
+            
           }
+          ElMessage({
+            message: res.message,
+            type: 'error',
+          })
           return Promise.reject(res)
         }
         return res
@@ -67,6 +74,7 @@ class Request {
             message = '请求错误'
             break
           case 401:
+            useUserStore().setUserInfo({})
             message = '未授权，请登录'
             break
           case 404:
@@ -78,7 +86,10 @@ class Request {
           default:
             message = '网络连接异常'
         }
-        console.error(message)
+        ElMessage({
+          message: message,
+          type: 'error',
+        })
         return Promise.reject(error)
       }
     )

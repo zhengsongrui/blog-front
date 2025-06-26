@@ -1,9 +1,18 @@
 export interface SingleArticleInter {
-    id:string, 
+    id:number, 
     title: string,
     description: string,
-    date: string,
-    category: string,
-    readCount: number
+    createtime: string,
+    categoryName: string,
+    readCount: number,
+    content:string
+}
+
+export type ArticleListInter = SingleArticleInter[]
+
+export interface GetArticleParamsInter {
+    id?:number, 
+    name?: string,
+    pagenum?:number
 }
 

@@ -1,15 +1,14 @@
 <script setup lang="ts">
-// import HelloWorld from './components/HelloWorld.vue'
 import MyHeader from './MyHeader.vue';
 import LeftMenu from './LeftMenu.vue';
 import Breadcrumb from './Breadcrumb.vue';
+import Login from './Login.vue';
 
 
 
 </script>
 
 <template>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
   <el-container class="topContainer">
     <el-header class="myHeader">
       <MyHeader></MyHeader>
@@ -20,12 +19,13 @@ import Breadcrumb from './Breadcrumb.vue';
       </el-aside>
       <el-main>
         <div class="marginView">
-          <Breadcrumb></Breadcrumb>
+          <!-- <Breadcrumb></Breadcrumb> -->
           <RouterView></RouterView>
         </div>
       </el-main>
     </el-container>
   </el-container>
+  <Login/>
 </template>
 
 <style lang="less" scoped>
@@ -69,6 +69,9 @@ import Breadcrumb from './Breadcrumb.vue';
      .marginView{
       margin: 0 auto;
       width: 700px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
   }
 }
