@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import router from "@/router";
-import { View } from "@element-plus/icons-vue"
+import { useRouter } from 'vue-router'
+import { View, Edit } from "@element-plus/icons-vue"
 import {
     type SingleArticleInter
 } from "@/types/articleApi.types"
 
-function gotoDetail(id:number) {
+
+const router = useRouter()
+function gotoDetail(id: number) {
     router.push({
-        path:`/articleDetail/${id}`
+        path: `/articleDetail/${id}`
     })
 }
 
 defineProps<{
-    itemData: SingleArticleInter
+    itemData: SingleArticleInter,
+    editModel: boolean
 }>()
 
 </script>
@@ -20,10 +23,13 @@ defineProps<{
 <template>
     <div class="listItem">
         <div class="topView">
-            <div class="title" @click="gotoDetail(itemData.id)">{{ itemData.title }}</div>
+            <div class="title textCss" @click="gotoDetail(itemData.id)">{{ itemData.title }}</div>
             <el-tag size="small" effect="plain" type="success">{{ itemData.categoryName }}</el-tag>
+            <el-icon class="editIcon" v-if="editModel" :size="20" color="#409eff">
+                <Edit></Edit>
+            </el-icon>
         </div>
-        <div class="centerView" @click="gotoDetail(itemData.id)">{{ itemData.description }}</div>
+        <div class="centerView textCss" @click="gotoDetail(itemData.id)">{{ itemData.description }}</div>
         <div class="bottomView">
             <div class="read">
                 <el-icon :size="16" color="#666">
@@ -43,13 +49,29 @@ defineProps<{
     margin-bottom: 20px;
     padding: 10px;
 
-    .topView,
-    .bottomView {
+    .topView {
+        position: relative;
         display: flex;
         align-items: center;
+        padding-right: 30px;
+
+        .editIcon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            transition: all .25s linear;
+
+            &:hover {
+                color: rgb(121.3, 187.1, 255);
+            }
+        }
     }
 
     .bottomView {
+        position: relative;
+        display: flex;
+        align-items: center;
         justify-content: flex-end;
 
         .read {
@@ -68,9 +90,16 @@ defineProps<{
         margin-right: 10px;
         cursor: pointer;
     }
-    .centerView{
+
+    .centerView {
+        padding: 12px 0;
         cursor: pointer;
 
+    }
+
+    .textCss {
+        word-break: break-all;
+        white-space: wrap;
     }
 }
 </style>

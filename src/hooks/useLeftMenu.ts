@@ -2,7 +2,7 @@
 // 侧边栏hooks
 import { computed, ref } from "vue"
 export default function () {
-    const initAsideWidth:number = 300
+    const initAsideWidth:number = 340
     // 侧边栏宽度控制
     let asideWidth = ref(0)
     function changeAsideWidth() {

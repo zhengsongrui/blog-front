@@ -4,23 +4,24 @@ import { type UserDataInter } from "@/types/userApi.types"
 // import request from '@/utils/request'
 
 export const useUserStore = defineStore('user', () => {
-  const showLoginView = ref(false)
-  const userInfo = ref<{nickname?:string}>({})
-  if(localStorage.getItem("userInfo")){
-    userInfo.value = JSON.parse(localStorage.getItem("userInfo") || "{}")
-  }
-
-
+  // 显示登录
+  let showLoginView = ref(false)
   function checkLoginView(status: boolean) {
     showLoginView.value = status
   }
 
+  // 用户信息
+  const userInfo = ref<{nickname?:string}>({})
+  if(localStorage.getItem("userInfo")){
+    userInfo.value = JSON.parse(localStorage.getItem("userInfo") || "{}")
+  }
   function setUserInfo(userdata: UserDataInter | {}) {
     userInfo.value = userdata
     localStorage.setItem("userInfo",JSON.stringify(userdata))
   }
 
-  
+  // 打开/关闭编辑模式
+  let editModel = ref(false)
 
   // async function getUserInfo() {
   //   try {
@@ -32,5 +33,5 @@ export const useUserStore = defineStore('user', () => {
   //   }
   // }
 
-  return { showLoginView, userInfo, checkLoginView, setUserInfo  }
+  return { showLoginView, userInfo, checkLoginView, setUserInfo  , editModel}
 })

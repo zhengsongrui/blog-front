@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Layout from './components/Layout.vue';
+import { useCategoryStore } from "@/stores/categoryStore";
+useCategoryStore().getCategoryList()
 
 </script>
 
@@ -25,5 +27,26 @@ body,
   background-size:  auto 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+@media(min-width:600px) and (max-width:800px) {
+  .el-main{
+    >.marginView{
+      width: 540px !important;
+    }
+  }
+}
+@media(min-width:380px)  and (max-width:600px) {
+  .el-main{
+    >.marginView{
+      width: 340px !important;
+    }
+  }
+}
+@media (max-width:380px){
+  .el-main{
+    >.marginView{
+      width: 300px !important;
+    }
+  }
 }
 </style>

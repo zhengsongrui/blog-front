@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from "../pages/home/Home.vue";
 import ArticleDetail from "../pages/articleDetail/ArticleDetail.vue"
+import EditCategory from '../pages/editCategory/editCategory.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,7 +19,12 @@ const router = createRouter({
             path: '/articleDetail/:id',
             name: 'articleDetail',
             component: ArticleDetail
-        }
+        },
+        {
+            path: '/editCategory',
+            name: 'editCategory',
+            component: EditCategory
+        },
     ]
 })
 

@@ -1,8 +1,10 @@
 export interface CategoryItemInter {
-            id:number,
-            name:string,
-            level:number,
-            // child:null | CategoryItemInter,
+  id: number;
+  name: string;
+  level: number;
+  sort:number;
+  username: string;
+  // child:null | CategoryItemInter,
 }
 
-export type CategoryListInter = CategoryItemInter[]
+export type CategoryListInter = CategoryItemInter[];

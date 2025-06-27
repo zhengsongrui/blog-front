@@ -55,7 +55,6 @@ class Request {
             console.error('登录过期，请重新登录')
             // 跳转到登录页
             useUserStore().setUserInfo({})
-            
           }
           ElMessage({
             message: res.message,

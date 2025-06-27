@@ -16,7 +16,7 @@ export default function () {
                 pagenum: currentPage,
                 pagesize: paginationData.value.pagesize
             }
-            const res = await request.get('/api/articles/getArticleByPage', Object.assign(params, nowSelectCategory.value, { level: undefined }))
+            const res = await request.get('/api/articles/getArticleByPage', Object.assign(params, nowSelectCategory.value || {}, { level: undefined }))
             if (res.data) {
                 setHomeLoading(false)
                 if (res.data.rows) {
@@ -42,28 +42,13 @@ export default function () {
     })
 
     // 当前选中分类
-    const nowSelectCategory = ref<CategoryItemInter>({
-        id: 0,
-        name: "",
-        level: 1,
-    })
+    const nowSelectCategory = ref<CategoryItemInter|null>(null)
     const setNowSelectCategory = function (data: CategoryItemInter) {
         nowSelectCategory.value = data
         getArticleByPage()
     }
 
-    // 获取分类列表
-    const categoryList = ref([])
-    const getCategoryList = async () => {
-        try {
-            const res = await request.get('/api/category/getCategoryList')
-            if (res.data) {
-                categoryList.value = res.data
-            }
-        } catch (error) {
-            console.error('请求失败:', error)
-        }
-    }
+   
 
     // 主页加载
     const homeLoading = ref(false)
@@ -75,8 +60,6 @@ export default function () {
     return {
         articleListData,
         getArticleByPage,
-        categoryList,
-        getCategoryList,
         homeLoading,
         setHomeLoading,
         paginationData,

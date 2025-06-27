@@ -2,8 +2,9 @@
 import { useUserStore } from '@/stores/userStore';
 import { storeToRefs } from 'pinia';
 import { ElMessageBox } from 'element-plus'
-import router from '@/router';
+import {useRouter} from 'vue-router'
 
+const router = useRouter()
 let { checkLoginView  } = useUserStore() 
 let { userInfo } = storeToRefs(useUserStore())
 
@@ -18,16 +19,12 @@ function loginOut(){
     })
 }
 
-// 返回首页
-function gobackHome(){
-    router.push('/')
-}
 
 </script>
 
 <template>
     <!-- logo -->
-    <div class="logo" @click="gobackHome">
+    <div class="logo" @click="router.push('/')">
         LOGO
     </div>
     <div class="remark">

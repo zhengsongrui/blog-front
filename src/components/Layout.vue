@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MyHeader from './MyHeader.vue';
 import LeftMenu from './LeftMenu.vue';
-import Breadcrumb from './Breadcrumb.vue';
+// import Breadcrumb from './Breadcrumb.vue';
 import Login from './Login.vue';
 
 
@@ -46,7 +46,7 @@ import Login from './Login.vue';
     top: 0;
     left: 0;
     right: 0;
-    
+    z-index: 99;
   }
 
   .el-aside {
@@ -57,6 +57,7 @@ import Login from './Login.vue';
     top: 60px;
     left: 0;
     bottom: 0;
+    z-index: 99;
   }
 
  

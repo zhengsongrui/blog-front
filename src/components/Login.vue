@@ -5,7 +5,6 @@ import { storeToRefs } from "pinia"
 let { username , password , loginFunc , clearInput } = useLogin()
 let { showLoginView } = storeToRefs(useUserStore()) 
 let { checkLoginView } = useUserStore() 
-
 </script>
 
 <template>
@@ -13,10 +12,10 @@ let { checkLoginView } = useUserStore()
         <div class="loginView">
             <div class="title">登录</div>
             <div class="inputView">
-                <el-input v-model="username" style="width: 360px" placeholder="用户名" size="large"/>
+                <el-input v-model="username" style="width: 300px" placeholder="用户名" size="large"/>
             </div>
             <div class="inputView">
-                <el-input v-model="password" style="width: 360px" placeholder="密码" size="large"/>
+                <el-input v-model="password" style="width: 300px" placeholder="密码" size="large" type="password"/>
             </div>
             <div class="actionView">
                 <el-button type="primary" size="large" @click="loginFunc()">登录</el-button>
@@ -34,10 +33,10 @@ let { checkLoginView } = useUserStore()
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, .3);
-
+        z-index: 999;
         .loginView{
-            width: 500px;
-            height: 300px;
+            width: 375px;
+            height: 260px;
             padding: 20px;
             box-sizing: border-box;
             border-radius: 6px;
@@ -52,7 +51,7 @@ let { checkLoginView } = useUserStore()
             .title{
                 font-size: 30px;
                 font-weight: 700;
-                margin-bottom: 40px;
+                margin-bottom: 30px;
             }
             .inputView{
                 margin-bottom: 20px;
