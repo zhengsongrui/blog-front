@@ -1,21 +1,18 @@
 <script setup lang="ts" name="LeftMenu">
 import useLeftMenu from '@/hooks/useLeftMenu'
-import { useUserStore } from '@/stores/userStore';
-import { storeToRefs } from 'pinia';
+
 let { changeAsideWidth, asideBtnText, asideWidth, initAsideWidth } = useLeftMenu()
-let { editModel } = storeToRefs(useUserStore()) 
-let showEditBtn = !!localStorage.getItem('token')
+
 </script>
 
 <template>
   <div class="checkBtn" @click="changeAsideWidth()">{{ asideBtnText }}</div>
   <div class="leftMenu" :style="`width:${asideWidth}px;`">
     <div class="content" :style="`width:${initAsideWidth}px;`">
-      <div class="flexItem" >
+      <!-- <div class="flexItem" >
         <div class="title">编辑模式：</div>
-        <el-switch v-model="editModel" :disabled="!showEditBtn" inline-prompt size="large" active-text="开启" inactive-text="关闭" />
         <div class="tip" v-if="!showEditBtn">（登录后解锁）</div>
-      </div>
+      </div> -->
       <div style="margin-top: 20px;">辅助栏待开发功能：</div>
       <div>1.浏览记录</div>
       <div>2.搜索</div>
