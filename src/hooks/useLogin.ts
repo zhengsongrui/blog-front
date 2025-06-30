@@ -3,10 +3,14 @@ import { ElMessage } from "element-plus"
 import request from '@/utils/request'
 import { useUserStore } from "@/stores/userStore"
 import { ElLoading } from 'element-plus'
+import md5 from "md5"
+
 
 export default function () {
-    let username = ref("")
-    let password = ref("")
+    const initUsername = "testUser"
+    const initPassword = "123456"
+    let username = ref(initUsername)
+    let password = ref(initPassword)
     const { setUserInfo, checkLoginView } = useUserStore()
 
     // 登录
@@ -27,7 +31,7 @@ export default function () {
         try {
             const res = await request.post('/api/user/login', {
                 username: username.value,
-                password: password.value,
+                password: md5(password.value)  ,
             })
             loading.close()
             if (res.data) {
@@ -42,24 +46,20 @@ export default function () {
                 location.reload()
             } else {
                 ElMessage({
-                    message: res.data.message,
+                    message: res.message,
                     type: 'error',
                 })
             }
         } catch (error) {
             loading.close()
             console.error('请求失败:', error)
-            ElMessage({
-                message: '请求失败:' + error,
-                type: 'error',
-            })
         }
     }
 
     // 清空输入框
     function clearInput() {
-        username.value = ""
-        password.value = ""
+        username.value = initUsername
+        password.value = initPassword
     }
 
     return {

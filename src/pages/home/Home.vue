@@ -1,9 +1,11 @@
-<script setup lang="ts">
+<script setup lang="ts" name="Home">
 import CategoryList from "./components/CategoryList.vue";
 import ArticleListItem from "@/pages/home/components/ArticleListItem.vue";
 import useHome from "./hooks/useHome";
 import { useUserStore } from '@/stores/userStore';
 import { storeToRefs } from 'pinia';
+import { useRouter } from "vue-router";
+const router = useRouter()
 let { editModel } = storeToRefs(useUserStore())
 let {
     articleListData,
@@ -28,12 +30,13 @@ getArticleByPage()
         />
         <!-- 文章列表 -->
         <div class="articleList">
-            <div class="addArticle" v-if="editModel"> 
+            <div class="addArticle" v-if="editModel" @click="router.push('/editArticle/0')"> 
                 <span>+ 新增文章</span> 
             </div>
-            <template v-for="item in articleListData" :key="item.id">
+            <template v-if="articleListData.length>0" v-for="item in articleListData" :key="item.id">
                 <ArticleListItem :itemData="item" :editModel="editModel" />
             </template>
+            <div class="noData" v-if="articleListData.length===0">暂无数据</div>
         </div>
         <!-- 分页器 -->
         <el-pagination :current-page="paginationData.pagenum" :page-size="paginationData.pagesize" :pager-count="11"
@@ -64,6 +67,10 @@ getArticleByPage()
             color:  rgb(121.3, 187.1, 255);
             border: 2px solid  rgb(121.3, 187.1, 255);
         }
+    }
+    .noData{
+        padding-left: 40px;
+        margin-bottom: 2z0px;
     }
 }
 </style>

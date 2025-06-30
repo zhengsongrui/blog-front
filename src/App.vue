@@ -38,14 +38,14 @@ body,
 @media(min-width:380px)  and (max-width:600px) {
   .el-main{
     >.marginView{
-      width: 340px !important;
+      width: 360px !important;
     }
   }
 }
 @media (max-width:380px){
   .el-main{
     >.marginView{
-      width: 300px !important;
+      width: 340px !important;
     }
   }
 }

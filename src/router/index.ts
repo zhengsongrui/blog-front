@@ -1,10 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from "../pages/home/Home.vue";
 import ArticleDetail from "../pages/articleDetail/ArticleDetail.vue"
-import EditCategory from '../pages/editCategory/editCategory.vue';
+import EditCategory from '../pages/editCategory/EditCategory.vue';
+import EditArticle from '../pages/editArticle/EditArticle.vue'
 
 const router = createRouter({
-    history: createWebHistory(),
+    // history: createWebHistory(),
+    history: createWebHashHistory(),
     routes: [
         {
             path: '/',
@@ -25,6 +27,12 @@ const router = createRouter({
             name: 'editCategory',
             component: EditCategory
         },
+        {
+            path: '/editArticle/:id',
+            name: 'editArticle',
+            component: EditArticle
+        },
+        
     ]
 })
 

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="MyHeader">
 import { useUserStore } from '@/stores/userStore';
 import { storeToRefs } from 'pinia';
 import { ElMessageBox } from 'element-plus'
@@ -25,7 +25,7 @@ function loginOut(){
 <template>
     <!-- logo -->
     <div class="logo" @click="router.push('/')">
-        LOGO
+        BACK
     </div>
     <div class="remark">
         开发中...

@@ -2,7 +2,7 @@
 // 侧边栏hooks
 import { computed, ref } from "vue"
 export default function () {
-    const initAsideWidth:number = 340
+    const initAsideWidth:number = 320
     // 侧边栏宽度控制
     let asideWidth = ref(0)
     function changeAsideWidth() {
@@ -14,7 +14,7 @@ export default function () {
     }
     // 控制侧边栏按钮中的文本
     let asideBtnText = computed(() => {
-        return asideWidth!.value === 0 ? '显示' : '隐藏'
+        return asideWidth!.value === 0 ? '>' : '<'
     })
     return {
         changeAsideWidth,

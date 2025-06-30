@@ -59,6 +59,7 @@ export const useCategoryStore = defineStore("category", () => {
       try {
         const res = await request.delete(`/api/category/deleteCategory/${id}`);
         if (res.message === "success") {
+            ElMessage.success('删除成功！')
           getCategoryList();
         }
       } catch (error) {

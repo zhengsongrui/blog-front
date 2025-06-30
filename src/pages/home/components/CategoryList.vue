@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="CategoryList">
 import { useCategoryStore } from "@/stores/categoryStore";
 import { type CategoryItemInter } from "@/types/categoryApi.types"
 import { storeToRefs } from "pinia";

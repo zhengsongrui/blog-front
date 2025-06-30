@@ -6,6 +6,8 @@ import axios, {
 } from 'axios'
 import { ElMessage } from "element-plus"
 import { useUserStore } from "@/stores/userStore"
+import router from '@/router'
+
 
 
 // 定义接口返回数据的通用结构（根据实际 API 结构调整）
@@ -55,6 +57,8 @@ class Request {
             console.error('登录过期，请重新登录')
             // 跳转到登录页
             useUserStore().setUserInfo({})
+            useUserStore().checkLoginView(true)
+            router.replace('/')
           }
           ElMessage({
             message: res.message,
@@ -66,7 +70,6 @@ class Request {
       },
       (error: any) => {
         // 处理 HTTP 错误状态码
-        console.log(error)
         let message = ''
         switch (error.response?.status) {
           case 400:
@@ -74,6 +77,8 @@ class Request {
             break
           case 401:
             useUserStore().setUserInfo({})
+            router.replace('/')
+            useUserStore().checkLoginView(true)
             message = '未授权，请登录'
             break
           case 404:

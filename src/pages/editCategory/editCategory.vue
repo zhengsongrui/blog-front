@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="EditCategory">
 import { useCategoryStore } from "@/stores/categoryStore";
 import { storeToRefs } from "pinia";
 import useEditCategory from "./hooks/useEditCategory";
