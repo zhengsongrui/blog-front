@@ -2,7 +2,10 @@
 import { useCategoryStore } from "@/stores/categoryStore";
 import useEditArticle from "./hooks/useEditArticle";
 import { storeToRefs } from "pinia";
-const { articleData, goback, addArticle , deleteArticle , updateArticle} = useEditArticle();
+import request from "@/utils/request";
+import { ref } from "vue";
+const { articleData, goback, addArticle, deleteArticle, updateArticle } =
+  useEditArticle();
 const { categoryList } = storeToRefs(useCategoryStore());
 
 const toolbars = {
@@ -28,6 +31,21 @@ const toolbars = {
   subfield: true, // 单双栏模式
   preview: true, // 预览
 };
+
+const mdref = ref<any>(null);
+
+function $imgAdd(pos: any, $file: any) {
+  // 将图片上传到服务器.
+  var formdata = new FormData();
+  formdata.append("image", $file);
+  request
+    .post("/api/upload/singleFile", formdata, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then((result:any) => {
+      mdref.value.$img2Url(pos, result.url);
+    });
+}
 </script>
 
 <template>
@@ -39,9 +57,19 @@ const toolbars = {
         v-if="articleData.id === 0"
         >新增</el-button
       >
-      <el-button type="primary" @click="updateArticle()" v-if="articleData.id > 0">保存</el-button>
-      <el-button type="danger" @click="deleteArticle()" v-if="articleData.id > 0">删除</el-button>
-      <el-button type="danger" @click="goback()" plain >返回</el-button>
+      <el-button
+        type="primary"
+        @click="updateArticle()"
+        v-if="articleData.id > 0"
+        >保存</el-button
+      >
+      <el-button
+        type="danger"
+        @click="deleteArticle()"
+        v-if="articleData.id > 0"
+        >删除</el-button
+      >
+      <el-button type="danger" @click="goback()" plain>返回</el-button>
     </div>
     <div class="inputView">
       <el-collapse :model-value="'1'">
@@ -76,6 +104,8 @@ const toolbars = {
       </el-collapse>
       <div class="title">内容（推荐使用工具栏的全屏编辑）</div>
       <mavon-editor
+        ref="mdref"
+        @imgAdd="$imgAdd"
         v-model="articleData.content"
         :toolbars="toolbars"
       ></mavon-editor>

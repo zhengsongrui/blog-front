@@ -13,9 +13,11 @@ let { changeAsideWidth, asideBtnText, asideWidth, initAsideWidth } = useLeftMenu
         <div class="title">编辑模式：</div>
         <div class="tip" v-if="!showEditBtn">（登录后解锁）</div>
       </div> -->
-      <div style="margin-top: 20px;">辅助栏待开发功能：</div>
+      <a href="https://github.com/zhengsongrui" target="_blank">前往项目GitHub地址</a>
+      <div style="margin-top: 20px;">待开发功能：</div>
       <div>1.浏览记录</div>
       <div>2.搜索</div>
+      <div>3.优化阅读视窗和页面宽度</div>
     </div>
   </div>
 </template>
@@ -46,6 +48,10 @@ let { changeAsideWidth, asideBtnText, asideWidth, initAsideWidth } = useLeftMenu
 
   .content {
     padding: 10px;
+    a{
+      color:yellowgreen;
+      text-decoration: none;
+    }
     .flexItem{
       display: flex;
       align-items: center;
