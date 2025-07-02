@@ -9,7 +9,7 @@ let { checkLoginView } = useUserStore();
 
 <template>
   <div class="loginModal" v-show="showLoginView">
-    <div class="loginView">
+    <div class="loginView" v-if="showLoginView">
       <div class="title">登录</div>
       <div class="inputView">
         <el-input

@@ -28,6 +28,13 @@ body,
   background-repeat: no-repeat;
   background-position: center;
 }
+@media(min-width:1000px) {
+  .el-main{
+    >.marginView{
+      width: 930px !important;
+    }
+  }
+}
 @media(min-width:600px) and (max-width:800px) {
   .el-main{
     >.marginView{

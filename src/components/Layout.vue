@@ -4,8 +4,6 @@ import LeftMenu from './LeftMenu.vue';
 // import Breadcrumb from './Breadcrumb.vue';
 import Login from './Login.vue';
 
-
-
 </script>
 
 <template>
